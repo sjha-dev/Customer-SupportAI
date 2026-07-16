@@ -1,6 +1,7 @@
 'use client'
 import React, { use, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from "motion/react"
+import { div } from 'framer-motion/client'
 
 
 
@@ -19,9 +20,9 @@ function HomeClient({ email }: { email: string }) {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return ()=> document.removeEventListener("mousedown", handleClickOutside);
-  },[])
-    
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [])
+
   return (
     <div className="min-h-screen bg-linear-to-br from-white to-zinc-50 text-zinc-900 overflow-x-hidden">
       <motion.div
@@ -40,22 +41,22 @@ function HomeClient({ email }: { email: string }) {
               {firstLetter} </button>
 
             <AnimatePresence>
-            {open && (
-              <motion.div
-              initial={{opacity: 0, scale: 0.95, y: -10}}
-              animate={{opacity: 1, scale: 1, y: 0}}
-              exit={{opacity: 0, scale: 0.95, y: -10}}
+              {open && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: -10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -10 }}
 
-              
-              className ="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-xl border border-zinc-200 overflow-hidden">
 
-                <button className='w-full text-left px-4 py-3 text-sm hover:bg-zinc-100'>Dashboard</button>
-                <button className='block px-4 py-3 text-sm text-red-600 hover:bg-zinc-100'>Logout</button>
+                  className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-xl border border-zinc-200 overflow-hidden">
 
-              </motion.div>
-            )}
+                  <button className='w-full text-left px-4 py-3 text-sm hover:bg-zinc-100'>Dashboard</button>
+                  <button className='block px-4 py-3 text-sm text-red-600 hover:bg-zinc-100'>Logout</button>
 
-             </AnimatePresence>  
+                </motion.div>
+              )}
+
+            </AnimatePresence>
 
 
           </div> :
@@ -75,16 +76,16 @@ function HomeClient({ email }: { email: string }) {
       </motion.div>
 
 
-      <section className ='pt-36 pb-28 px-6'>
-        <div className="max-w-6xl mx-auto grid-cols-1 md:grid-cols-2 gap-20 items-center">
+      <section className='pt-36 pb-28 px-6'>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
 
-          <motion.div 
-          initial={{opacity:0, y:40}}
-          animate={{opacity:1,y:0}}
-          transition={{duration:0.7}}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
           >
             <h1 className='text-4xl md:text-5xl font-semibold tracking-tight'>
-              AI Customer Support <br/>
+              AI Customer Support <br />
               Built for Modern Websites
             </h1>
 
@@ -93,11 +94,55 @@ function HomeClient({ email }: { email: string }) {
               Let your customers get instant answers using your own buisness knowledge.
             </p>
 
+            <div className="mt-10 flex gap-4">
+
+              {email ? <button className="px-6 py-3 bg-green-500 text-black rounded-xl font-bold font-
+               hover:bg-green-600 transition">Go to Dashboard</button> :
+                <button className="px-6 py-3 bg-black text-white rounded-full font-medium
+                hover:bg-zinc-600 transition" onClick={handleLogin}>Get Started</button>}
+
+              <button className="px-6 py-3 bg-white text-black border border-zinc-300 rounded-full font-medium hover:bg-zinc-100 transition">Learn More</button>
+            </div>
+
           </motion.div>
 
-          <div className="div">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative"
+          >
 
-          </div>
+            <div className='rounded-2xl bg-white shadow-2xl border border-zinc-200 p-6'>
+
+              <div className='text-sm text-zinc-500 mb-3'>Live Chat Preview</div>
+              <div className='space-y-5'>
+                <div className='bg-black text-white rounded-lg px-4 py-2 text-sm ml-auto w-fit'>Do you offer 24/7 support?</div>
+                <div className='bg-zinc-100 rounded-lg px-4 py-2 text-sm w-fit '>yes, we offer 24/7 support!</div>
+
+              </div>
+              <motion.div
+
+              animate={{y: [0,-12,0]}}
+              transition={{ repeat: Infinity, duration: 3 }}
+              className='absolute -bottom-6 -right-6 
+              w-14 h-14 rounded-full bg-black text-white flex items-center justify-center shadow-xl'
+                         
+              >
+
+                💬
+
+
+
+
+
+              </motion.div>
+
+
+            </div>
+
+
+          </motion.div>
 
         </div>
 
