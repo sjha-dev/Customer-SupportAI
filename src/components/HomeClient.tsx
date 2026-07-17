@@ -13,6 +13,7 @@ function HomeClient({ email }: { email: string }) {
   const firstLetter = email?.charAt(0)?.toUpperCase()
   const [open, setOpen] = useState(false)
   const popupRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
@@ -22,6 +23,20 @@ function HomeClient({ email }: { email: string }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [])
+
+  const features = [{
+    title: "Plug and Play",
+    description: "Easily integrate SupportAi into your website with our simple setup process. No coding required."
+  },
+  {
+    title: "Admin Controlled",
+    description: "You control exactly what the AI knows and answers."
+  },
+  {
+    title: "24/7 Support",
+    description: "SupportAi is available around the clock, ensuring your customers receive assistance whenever they need it."
+  }
+  ]
 
   return (
     <div className="min-h-screen bg-linear-to-br from-white to-zinc-50 text-zinc-900 overflow-x-hidden">
@@ -101,7 +116,7 @@ function HomeClient({ email }: { email: string }) {
                 <button className="px-6 py-3 bg-black text-white rounded-full font-medium
                 hover:bg-zinc-600 transition" onClick={handleLogin}>Get Started</button>}
 
-              <button className="px-6 py-3 bg-white text-black border border-zinc-300 rounded-full font-medium hover:bg-zinc-100 transition">Learn More</button>
+              <a href="#features" className="px-6 py-3 bg-white text-black border border-zinc-300 rounded-full font-medium hover:bg-zinc-100 transition">Learn More</a>
             </div>
 
           </motion.div>
@@ -123,18 +138,14 @@ function HomeClient({ email }: { email: string }) {
               </div>
               <motion.div
 
-              animate={{y: [0,-12,0]}}
-              transition={{ repeat: Infinity, duration: 3 }}
-              className='absolute -bottom-6 -right-6 
+                animate={{ y: [0, -12, 0] }}
+                transition={{ repeat: Infinity, duration: 3 }}
+                className='absolute -bottom-6 -right-6 
               w-14 h-14 rounded-full bg-black text-white flex items-center justify-center shadow-xl'
-                         
+
               >
 
                 💬
-
-
-
-
 
               </motion.div>
 
@@ -143,6 +154,49 @@ function HomeClient({ email }: { email: string }) {
 
 
           </motion.div>
+
+        </div>
+
+      </section>
+
+      <section id="features"
+        className="bg-zinc-50 py-28 px-6 border-t border-zinc-200"
+
+
+      >
+
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.5 }}
+            className='text-3xl font-semibold text-center'
+
+          >
+            Why businesses <span className="text-red-500">choose</span> SupportAi
+          </motion.h2>
+
+
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: index * 0.1 }}
+                className='bg-white rounded-2xl p-8 shadow-lg border border-zinc-200'
+
+              >
+                <h1 className='text-lg font-semibold'>{feature.title}</h1>
+                <p className='mt-3 text-zinc-600 text-sm'>{feature.description}</p>
+
+              </motion.div>))}
+
+
+          </div>
 
         </div>
 
