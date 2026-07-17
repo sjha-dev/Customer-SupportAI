@@ -3,6 +3,8 @@ import React, { use, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from "motion/react"
 import axios from 'axios'
 import { div } from 'framer-motion/client'
+import { navigate } from 'next/dist/client/components/segment-cache/navigation'
+import { useRouter } from 'next/dist/client/components/navigation'
 
 
 
@@ -24,7 +26,7 @@ function HomeClient({ email }: { email: string }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [])
-
+const navigate =useRouter()
   const features = [{
     title: "Plug and Play",
     description: "Easily integrate SupportAi into your website with our simple setup process. No coding required."
@@ -44,11 +46,11 @@ function HomeClient({ email }: { email: string }) {
 
       const result = await axios.get("/api/auth/logout")
       window.location.href = "/"
-      
-      } catch(error){
-        console.log(error)
-      }
-  }  
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
   return (
@@ -78,8 +80,8 @@ function HomeClient({ email }: { email: string }) {
 
                   className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-xl border border-zinc-200 overflow-hidden">
 
-                  <button className='w-full text-left px-4 py-3 text-sm hover:bg-zinc-100'>Dashboard</button>
-                  <button className='block px-4 py-3 text-sm text-red-600 hover:bg-zinc-100'onClick={handleLogout}>Logout</button>
+                  <button className='w-full text-left px-4 py-3 text-sm hover:bg-zinc-100' onClick={()=>navigate.push("/dashboard")}>Dashboard</button>
+                  <button className='block px-4 py-3 text-sm text-red-600 hover:bg-zinc-100' onClick={handleLogout}>Logout</button>
 
                 </motion.div>
               )}
@@ -125,7 +127,7 @@ function HomeClient({ email }: { email: string }) {
             <div className="mt-10 flex gap-4">
 
               {email ? <button className="px-6 py-3 bg-green-500 text-black rounded-xl font-bold font-
-               hover:bg-green-600 transition">Go to Dashboard</button> :
+               hover:bg-green-600 transition" onClick={()=>navigate.push("/dashboard")}>Go to Dashboard</button> :
                 <button className="px-6 py-3 bg-black text-white rounded-full font-medium
                 hover:bg-zinc-600 transition" onClick={handleLogin}>Get Started</button>}
 
