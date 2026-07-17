@@ -202,6 +202,10 @@ function HomeClient({ email }: { email: string }) {
 
       </section>
 
+      <footer className="bg-zinc-100 py-10 text-center text-sm text-zinc-400 border-t border-zinc-200">
+        &copy; {new Date().getFullYear()} SupportAi. All rights reserved.
+      </footer>
+
 
     </div>
   )
