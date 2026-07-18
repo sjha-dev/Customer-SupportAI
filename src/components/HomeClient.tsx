@@ -26,7 +26,7 @@ function HomeClient({ email }: { email: string }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [])
-const navigate =useRouter()
+  const navigate = useRouter()
   const features = [{
     title: "Plug and Play",
     description: "Easily integrate SupportAi into your website with our simple setup process. No coding required."
@@ -59,9 +59,6 @@ const navigate =useRouter()
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-
-
-
         className="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-zinc-200 ">
 
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -80,7 +77,7 @@ const navigate =useRouter()
 
                   className="absolute right-0 mt-3 w-44 bg-white rounded-xl shadow-xl border border-zinc-200 overflow-hidden">
 
-                  <button className='w-full text-left px-4 py-3 text-sm hover:bg-zinc-100' onClick={()=>navigate.push("/dashboard")}>Dashboard</button>
+                  <button className='w-full text-left px-4 py-3 text-sm hover:bg-zinc-100' onClick={() => navigate.push("/dashboard")}>Dashboard</button>
                   <button className='block px-4 py-3 text-sm text-red-600 hover:bg-zinc-100' onClick={handleLogout}>Logout</button>
 
                 </motion.div>
@@ -127,7 +124,7 @@ const navigate =useRouter()
             <div className="mt-10 flex gap-4">
 
               {email ? <button className="px-6 py-3 bg-green-500 text-black rounded-xl font-bold font-
-               hover:bg-green-600 transition" onClick={()=>navigate.push("/dashboard")}>Go to Dashboard</button> :
+               hover:bg-green-600 transition" onClick={() => navigate.push("/dashboard")}>Go to Dashboard</button> :
                 <button className="px-6 py-3 bg-black text-white rounded-full font-medium
                 hover:bg-zinc-600 transition" onClick={handleLogin}>Get Started</button>}
 

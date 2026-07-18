@@ -1,8 +1,19 @@
+import DashboardClient from '@/components/DashboardClient'
+import { getSession } from '@/lib/getSession'
+import session from '@scalekit-sdk/node/lib/session'
 import React from 'react'
+  
+ 
 
-function page() {
+async function page(){
+    const session=await getSession()
+
+  
   return (
-    <div>dashboard page</div>
+    <> 
+      <DashboardClient ownerId={session?.user?.id!}/>
+
+    </>
   )
 }
 
